@@ -398,8 +398,9 @@
       <!-- Matching the table origin -->
       <!--<origin rpy="1.570796325 0 -1.570796325" xyz="${0.213-0.024/2} 0 0"/>-->
       <!-- Matching the convention -->
-      <!--z offset closed gripper from base to fingertip 162.8mm (for rg2_ft its 220 + 25 for the quick changer) + force torque sensor 35mm-->
-      <origin rpy="0 0 0" xyz="0 0 0.279"/>
+      <!--z offset closed OnRobot RG2-FT gripper from base to fingertip 220 + quick changer 25 + force torque sensor 35mm = 280 mm-->
+      <!--z offset closed Robotiq gripper from base to fingertip 162.8mm + force torque sensor 35mm-->
+      <origin rpy="0 0 0" xyz="0 0 0.1978"/>
       <!--<limit effort="0" lower="0" upper="0" velocity="0"/>-->
     </joint>
 
