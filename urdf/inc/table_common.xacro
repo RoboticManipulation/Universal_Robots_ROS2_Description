@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  
+  <xacro:macro name="read_table_data" params="physical_parameters_table_file">
+    <!-- Read .yaml files from disk, load content into properties -->
+    <xacro:property name="config_physical_parameters_table" value="${load_yaml(physical_parameters_table_file)}"/>
+
+    <!-- Extract subsections from yaml dictionaries -->
+    <xacro:property name="sec_inertia_parameters" value="${config_physical_parameters_table['inertia_parameters']}" />
+
+    <!-- mass -->
+    <xacro:property name="table_mass" value="${sec_inertia_parameters['table_mass']}" scope="parent"/>
+
+    <!-- dimensions -->
+    <xacro:property name="inertia_links" value="${sec_inertia_parameters['links']}" scope="parent"/>
+    <xacro:property name="table_inertia_x" value="${inertia_links['table']['x']}" scope="parent"/>
+    <xacro:property name="table_inertia_y" value="${inertia_links['table']['y']}" scope="parent"/>
+    <xacro:property name="table_inertia_z" value="${inertia_links['table']['z']}" scope="parent"/>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,89 @@
+Convert xacro to urdf
+ros2 run xacro xacro -o robot.urdf robot.urdf.xacro
+
+Use scripts xacro2urdf.bash and xacro2sdf.bash instead of ros2 run command
+r2
+. xacro2urdf.bash
+. xacro2sdf.bash
+
+Examples
+Convert ur.urdf.xacro to urdf
+ros2 run xacro xacro -o robot.urdf ur.urdf.xacro name:=ur5 joint_limit_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/joint_limits.yaml kinematics_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/default_kinematics.yaml physical_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/physical_parameters.yaml visual_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/visual_parameters.yaml
+
+
+Convert ur.urdf.xacro to urdf
+ros2 run xacro xacro -o robot.urdf ur.urdf.xacro name:=ur5 joint_limit_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/joint_limits.yaml kinematics_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/default_kinematics.yaml physical_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/physical_parameters.yaml visual_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5/visual_parameters.yaml
+
+
+Convert ur.urdf.xacro to urdf
+ros2 run xacro xacro -o robot.urdf ur.urdf.xacro name:=ur5e joint_limit_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5e/joint_limits.yaml kinematics_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5e/default_kinematics.yaml physical_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5e/physical_parameters.yaml visual_params:=/home/bk/ros2/object_placement/src/Universal_Robots_ROS2_Driver/ur_description/config/ur5e/visual_parameters.yaml
+
+
+Convert urdf to sdf
+ign sdf -p robot.urdf > robot.sdf
+
+
+Check tree structure of urdf
+check_urdf robot.urdf > check.txt
+
+Check sdf file
+ign sdf -k robot.sdf
+
+Check xml file
+xmllint robot.urdf > check.xml
+
+Example of spawning a sphere in the "empty" world using ignition commands (see https://github.com/robotology/gym-ignition/issues/44)
+
+ign service -s /world/empty/create \
+--reqtype ignition.msgs.EntityFactory \
+--reptype ignition.msgs.Boolean \
+--timeout 300 \
+--req 'sdf: '\
+'"<?xml version=\"1.0\" ?>'\
+'<sdf version=\"1.6\">'\
+'<model name=\"spawned_model\">'\
+'<link name=\"link\">'\
+'<visual name=\"visual\">'\
+'<geometry><sphere><radius>1.0</radius></sphere></geometry>'\
+'</visual>'\
+'<collision name=\"visual\">'\
+'<geometry><sphere><radius>1.0</radius></sphere></geometry>'\
+'</collision>'\
+'</link>'\
+'</model>'\
+'</sdf>" '\
+'pose: {position: {z: 10}} '\
+'name: "new_name" '\
+'allow_renaming: true'
+
+Another example of spawning a sphere in the "empty" world (see https://answers.gazebosim.org//question/26037/how-to-spawn-sdf-object-in-ignition-gazebo/)
+ign service -s /world/empty/create \
+--reqtype ignition.msgs.EntityFactory \
+--reptype ignition.msgs.Boolean \
+--timeout 300 \
+--req 'sdf: '\
+'"<?xml version=\"1.0\" ?>'\
+'<sdf version=\"1.6\">'\
+'<model name=\"spawned_model\">'\
+'<link name=\"link\">'\
+'<visual name=\"visual\">'\
+'<geometry><sphere><radius>1.0</radius></sphere></geometry>'\
+'</visual>'\
+'<collision name=\"visual\">'\
+'<geometry><sphere><radius>1.0</radius></sphere></geometry>'\
+'</collision>'\
+'</link>'\
+'</model>'\
+'</sdf>" '\
+'pose: {position: {z: 10}} '\
+'name: "new_name" '\
+'allow_renaming: true'
+
+
+Example of removing an entity by name in the "empty" world (see https://answers.gazebosim.org//question/26037/how-to-spawn-sdf-object-in-ignition-gazebo/)
+
+ign service -s /world/empty/remove \
+--reqtype ignition.msgs.Entity \
+--reptype ignition.msgs.Boolean \
+--timeout 300 \
+--req 'name: "new_name" type: MODEL'

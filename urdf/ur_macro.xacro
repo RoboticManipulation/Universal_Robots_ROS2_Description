@@ -384,7 +384,6 @@
       <child link="${prefix}tool0"/>
     </joint>
 
-
     <!-- Virtual Grasp Point Link -->
     <link name="${prefix}gripper_grasp_point">
     </link>
