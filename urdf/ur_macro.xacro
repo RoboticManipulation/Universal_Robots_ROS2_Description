@@ -82,6 +82,7 @@
     tool_device_name:=/tmp/ttyUR
     tool_tcp_port:=54321
     robot_ip:=0.0.0.0
+    use_gripper
     script_filename:=to_be_filled_by_ur_robot_driver
     output_recipe_filename:=to_be_filled_by_ur_robot_driver
     input_recipe_filename:=to_be_filled_by_ur_robot_driver
