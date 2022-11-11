@@ -18,7 +18,7 @@
     reverse_port:=50001
     script_sender_port:=50002">
 
-    <ros2_control name="${name}_gripper" type="system">
+ <!--   <ros2_control name="${name}_gripper" type="system">
       <hardware>
         <xacro:if value="${sim_gazebo}">
           <plugin>gazebo_ros2_control/GazeboSystem</plugin>
@@ -52,7 +52,7 @@
                 <state_interface name="velocity"/>
       </joint>
     </ros2_control>
-
+-->
     <ros2_control name="${name}" type="system">
       <hardware>
         <xacro:if value="${sim_gazebo}">
