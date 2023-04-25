@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  
+  <xacro:include filename="$(find ur_description)/urdf/inc/model_common.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/inc/table_common.xacro" />
+
+  <xacro:macro name="table_collision_attach" params="
+    prefix
+    name
+    parent
+    *origin
+    sim_ignition
+    sim_gazebo
+    gazebo_preserve_fixed_joint
+    physical_parameters_table_file
+   ">
+
+
+
+  <!-- links -->
+  <link name="${prefix}${name}_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>
+      <geometry>
+        <box size="0 0 0"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>
+      <geometry>
+        <box size="${table_inertia_x} ${table_inertia_y} ${table_inertia_z}"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertial x="${table_inertia_x}" y="${table_inertia_y}" z="${table_inertia_z}"  m="${table_mass}">
+      <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>
+    </xacro:box_inertial>
+  </link>
+
+  <xacro:if value="${sim_ignition}">
+    <gazebo reference="${prefix}${name}_link">
+      <visual>
+        <material>
+          <ambient>0.8 0.52 0.25 1</ambient>
+          <diffuse>0.8 0.52 0.25 1</diffuse>
+          <specular>0.8 0.52 0.25 1</specular>
+        </material>
+      </visual>
+    </gazebo>
+  </xacro:if>
+
+  <!-- joints -->
+
+  <joint name="${prefix}${name}_joint" type="fixed">
+    <parent link="${parent}"/>
+    <child link="${prefix}${name}_link"/>
+    <!--<origin rpy="0 0 0" xyz="0 0 0"/> -->
+    <xacro:insert_block name="origin" />
+  </joint>
+
+  <!-- Preserve fixed joint, if desired -->
+  <xacro:if value="${gazebo_preserve_fixed_joint}">
+    <gazebo reference="${prefix}${name}_joint">
+      <preserveFixedJoint>true</preserveFixedJoint>
+      <disableFixedJointLumping>true</disableFixedJointLumping>
+    </gazebo>
+  </xacro:if>
+
+    </xacro:macro>
+</robot>

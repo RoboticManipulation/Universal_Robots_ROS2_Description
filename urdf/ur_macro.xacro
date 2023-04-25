@@ -82,6 +82,7 @@
     tool_device_name:=/tmp/ttyUR
     tool_tcp_port:=54321
     robot_ip:=0.0.0.0
+    use_gripper
     script_filename:=to_be_filled_by_ur_robot_driver
     output_recipe_filename:=to_be_filled_by_ur_robot_driver
     input_recipe_filename:=to_be_filled_by_ur_robot_driver
@@ -386,6 +387,25 @@
       <origin xyz="0 0 0" rpy="${pi/2.0} 0 ${pi/2.0}"/>
       <parent link="${prefix}flange"/>
       <child link="${prefix}tool0"/>
+    </joint>
+
+    <!-- Virtual Grasp Point Link -->
+    <link name="${prefix}gripper_grasp_point">
+    </link>
+
+    <!-- Virtual Grasp Point Fixed Joint -->
+  
+    <joint name="${prefix}gripper_grasp_point_joint" type="fixed">
+      <parent link="tool0"/>
+      <child link="${prefix}gripper_grasp_point"/>
+      <!-- Center between finger tips -->
+      <!-- Matching the table origin -->
+      <!--<origin rpy="1.570796325 0 -1.570796325" xyz="${0.213-0.024/2} 0 0"/>-->
+      <!-- Matching the convention -->
+      <!--z offset closed OnRobot RG2-FT gripper from base to fingertip 220 + quick changer 25 + force torque sensor 35mm = 280 mm-->
+      <!--z offset closed Robotiq gripper from base to fingertip 162.8mm + force torque sensor 35mm-->
+      <origin rpy="0 0 0" xyz="0 0 0.1628"/>
+      <!--<limit effort="0" lower="0" upper="0" velocity="0"/>-->
     </joint>
 
   </xacro:macro>
