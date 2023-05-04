@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:macro name="robotiq_gripper_ros2_control" params="name com_port">
-        <ros2_control name="${name}" type="actuator">
+        <ros2_control name="${name}" type="system">
             <hardware>
                 <plugin>robotiq_driver/RobotiqGripperHardwareInterface</plugin>
                 <param name="gripper_closed_position">0.7929</param>
