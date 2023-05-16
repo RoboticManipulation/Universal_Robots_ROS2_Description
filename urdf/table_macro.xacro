@@ -19,6 +19,10 @@
     <color rgba="0.5294117647058824 0.43137254901960786 0.29411764705882354 1.0" />
   </material>
 
+   <material name="orangeyellow" >
+    <color rgba="1.0 0.6784313725490196 0.00392156862745098 1.0" />
+  </material>
+
 
   <!-- links -->
   <link name="${prefix}${name}_link">
@@ -27,7 +31,7 @@
       <geometry>
         <box size="${table_inertia_x} ${table_inertia_y} ${table_inertia_z}"/>
       </geometry>
-      <material name="dullbrown"/>
+      <material name="orangeyellow"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>

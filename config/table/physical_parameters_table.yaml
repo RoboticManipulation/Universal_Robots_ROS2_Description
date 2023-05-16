@@ -1,9 +1,26 @@
 # Physical parameters
 inertia_parameters:
   table_mass: 1.0
+  beam_mass: 1.0
+  wall_mass: 1.0
+  ringlight_mass: 1.0
 
   links:
     table:
       x: 0.8
       y: 1.0
       z: 0.05
+    
+    beam:
+      x: 0.2
+      y: 0.05
+      z: 0.028
+    
+    wall:
+      x: 2.0
+      y: 2.5
+      z: 0.05
+    
+    ringlight:
+      radius: 0.3
+      length: 0.03

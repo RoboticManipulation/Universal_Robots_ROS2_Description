@@ -4,7 +4,7 @@
   <xacro:include filename="$(find ur_description)/urdf/inc/model_common.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/inc/table_common.xacro" />
 
-  <xacro:macro name="table_collision_attach" params="
+  <xacro:macro name="beam_attach" params="
     prefix
     name
     parent
@@ -13,9 +13,11 @@
     sim_gazebo
     gazebo_preserve_fixed_joint
     physical_parameters_table_file
-    collision_geometry
    ">
 
+  <material name="gunmetal" >
+    <color rgba="0.3254901960784314 0.3843137254901961 0.403921568627451 1.0" />
+  </material>
 
 
   <!-- links -->
@@ -23,21 +25,17 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>
       <geometry>
-        <box size="0 0 0"/>
+        <box size="${beam_inertia_x} ${beam_inertia_y} ${beam_inertia_z}"/>
       </geometry>
+      <material name="gunmetal"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>
       <geometry>
-        <xacro:if value="${collision_geometry == 'box'}">
-          <box size="1.5 2.0 0.05"/>
-        </xacro:if>
-        <xacro:if value="${collision_geometry == 'cylinder'}">
-          <cylinder radius="0.3" length="0.03" />
-        </xacro:if>
+        <box size="${beam_inertia_x} ${beam_inertia_y} ${beam_inertia_z}"/>
       </geometry>
     </collision>
-    <xacro:box_inertial x="${table_inertia_x}" y="${table_inertia_y}" z="${table_inertia_z}"  m="${table_mass}">
+    <xacro:box_inertial x="${beam_inertia_x}" y="${beam_inertia_y}" z="${beam_inertia_z}"  m="${beam_mass}">
       <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>
     </xacro:box_inertial>
   </link>

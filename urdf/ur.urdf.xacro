@@ -5,6 +5,9 @@
    <!-- import main macro -->
    <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
    <xacro:include filename="$(find ur_description)/urdf/table_macro.xacro"/>
+   <xacro:include filename="$(find ur_description)/urdf/beam_macro.xacro"/>
+   <xacro:include filename="$(find ur_description)/urdf/wall_macro.xacro"/>
+   <xacro:include filename="$(find ur_description)/urdf/ringlight_macro.xacro"/>       
    <xacro:include filename="$(find ur_description)/urdf/table_collision_macro.xacro"/>
    <xacro:include filename="$(find ur_description)/urdf/robotiq_gripper_macro.urdf.xacro"/> 
 
@@ -46,6 +49,7 @@
 
    <!-- Table parameters -->
    <xacro:arg name="physical_params_table" default="$(find ur_description)/config/table/physical_parameters_table.yaml"/>
+   <xacro:arg name="ring_beam_height" default="1.0"/>
 
      <!-- Simulation parameters -->
    <xacro:arg name="use_fake_hardware" default="false" />
@@ -85,21 +89,35 @@
      <origin xyz="-0.232 0.415 0" rpy="0 0 0"/>
    </xacro:table_attach>
 
-   <!-- top -->
-   <xacro:table_collision_attach
+   <!-- ringlight -->
+   <xacro:ringlight_attach
      prefix="$(arg prefix)"
-     name="top"
+     name="ringlight"
      parent="world"
      sim_gazebo="$(arg sim_gazebo)"
      sim_ignition="$(arg sim_ignition)"
      gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
      physical_parameters_table_file="$(arg physical_params_table)"
      >
-     <origin xyz="-0.232 0.415 0.7" rpy="0 0 0"/>
-   </xacro:table_collision_attach>
+     <origin xyz="-0.232 0.415 $(arg ring_beam_height)" rpy="0 0 0"/>
+   </xacro:ringlight_attach>
+
+   <!-- beam -->
+   <xacro:beam_attach
+     prefix="$(arg prefix)"
+     name="beam"
+     parent="world"
+     sim_gazebo="$(arg sim_gazebo)"
+     sim_ignition="$(arg sim_ignition)"
+     gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
+     physical_parameters_table_file="$(arg physical_params_table)"
+     
+     >
+     <origin xyz="-0.518 0.415 $(arg ring_beam_height)" rpy="0 0 0"/>
+   </xacro:beam_attach>
 
     <!-- wall -->
-   <xacro:table_collision_attach
+   <xacro:wall_attach
      prefix="$(arg prefix)"
      name="wall"
      parent="world"
@@ -109,7 +127,7 @@
      physical_parameters_table_file="$(arg physical_params_table)"
      >
      <origin xyz="-0.618 0.0 0.35" rpy="0 1.57 0"/>
-   </xacro:table_collision_attach>
+   </xacro:wall_attach>
 
    <!-- gripper -->
    <xacro:if value="$(arg use_gripper)">

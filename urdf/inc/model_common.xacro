@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
   
-  <xacro:macro name="cylinder_inertial_model_common" params="radius length mass *origin">
+  <xacro:macro name="cylinder_inertial" params="radius length mass *origin">
     <inertial>
       <mass value="${mass}" />
       <xacro:insert_block name="origin" />

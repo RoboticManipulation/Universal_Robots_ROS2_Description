@@ -10,12 +10,27 @@
 
     <!-- mass -->
     <xacro:property name="table_mass" value="${sec_inertia_parameters['table_mass']}" scope="parent"/>
+    <xacro:property name="beam_mass" value="${sec_inertia_parameters['beam_mass']}" scope="parent"/>
+    <xacro:property name="wall_mass" value="${sec_inertia_parameters['wall_mass']}" scope="parent"/>
+    <xacro:property name="ringlight_mass" value="${sec_inertia_parameters['ringlight_mass']}" scope="parent"/>
 
     <!-- dimensions -->
     <xacro:property name="inertia_links" value="${sec_inertia_parameters['links']}" scope="parent"/>
+
     <xacro:property name="table_inertia_x" value="${inertia_links['table']['x']}" scope="parent"/>
     <xacro:property name="table_inertia_y" value="${inertia_links['table']['y']}" scope="parent"/>
     <xacro:property name="table_inertia_z" value="${inertia_links['table']['z']}" scope="parent"/>
+
+    <xacro:property name="beam_inertia_x" value="${inertia_links['beam']['x']}" scope="parent"/>
+    <xacro:property name="beam_inertia_y" value="${inertia_links['beam']['y']}" scope="parent"/>
+    <xacro:property name="beam_inertia_z" value="${inertia_links['beam']['z']}" scope="parent"/>
+
+    <xacro:property name="wall_inertia_x" value="${inertia_links['wall']['x']}" scope="parent"/>
+    <xacro:property name="wall_inertia_y" value="${inertia_links['wall']['y']}" scope="parent"/>
+    <xacro:property name="wall_inertia_z" value="${inertia_links['wall']['z']}" scope="parent"/>
+
+    <xacro:property name="ringlight_inertia_radius" value="${inertia_links['ringlight']['radius']}" scope="parent"/>
+    <xacro:property name="ringlight_inertia_length" value="${inertia_links['ringlight']['length']}" scope="parent"/>
 
   </xacro:macro>
 
