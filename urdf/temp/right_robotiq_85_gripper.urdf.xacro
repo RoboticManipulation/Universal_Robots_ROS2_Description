@@ -37,7 +37,7 @@
         </inertial>
     </link>
 
-    <xacro:robotiq_85_gripper prefix="right_" parent="gripper_root_link" >
+    <xacro:robotiq_85_gripper tf_prefix="right_" parent="gripper_root_link" >
         <origin xyz="0.05 0 0.85" rpy="0 0 0"/>
     </xacro:robotiq_85_gripper>
 </robot>

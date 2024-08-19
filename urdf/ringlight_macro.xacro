@@ -5,7 +5,7 @@
   <xacro:include filename="$(find ur_description)/urdf/inc/table_common.xacro" />
 
   <xacro:macro name="ringlight_attach" params="
-    prefix
+    tf_prefix
     name
     parent
     *origin
@@ -21,7 +21,7 @@
 
 
   <!-- links -->
-  <link name="${prefix}${name}_link">
+  <link name="${tf_prefix}${name}_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 ${-table_inertia_z/2}"/>
       <geometry>
@@ -41,7 +41,7 @@
   </link>
 
   <xacro:if value="${sim_ignition}">
-    <gazebo reference="${prefix}${name}_link">
+    <gazebo reference="${tf_prefix}${name}_link">
       <visual>
         <material>
           <ambient>0.8 0.52 0.25 1</ambient>
@@ -54,16 +54,16 @@
 
   <!-- joints -->
 
-  <joint name="${prefix}${name}_joint" type="fixed">
+  <joint name="${tf_prefix}${name}_joint" type="fixed">
     <parent link="${parent}"/>
-    <child link="${prefix}${name}_link"/>
+    <child link="${tf_prefix}${name}_link"/>
     <!--<origin rpy="0 0 0" xyz="0 0 0"/> -->
     <xacro:insert_block name="origin" />
   </joint>
 
   <!-- Preserve fixed joint, if desired -->
   <xacro:if value="${gazebo_preserve_fixed_joint}">
-    <gazebo reference="${prefix}${name}_joint">
+    <gazebo reference="${tf_prefix}${name}_joint">
       <preserveFixedJoint>true</preserveFixedJoint>
       <disableFixedJointLumping>true</disableFixedJointLumping>
     </gazebo>

@@ -56,14 +56,14 @@ Changelog for package ur_description
   Co-authored-by: Lennart Nachtigall <lennart.nachtigall@sci-mo.de>
 * remove ticks from tf_prefix (`#60 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/issues/60>`_)
   Co-authored-by: Lennart Nachtigall <lennart.nachtigall@sci-mo.de>
-* Replace duplicated ``prefix`` parameter with ``tf_prefix``
+* Replace duplicated ``tf_prefix`` parameter with ``tf_prefix``
 * Whitespace fixes
 * Update pre-commit workflows to current versions
 * This commits adds additional configuration fields which are needed for multiarm support: (`#47 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/issues/47>`_)
   - Added trajectory_port        - Port needed for the trajectory sending interface
   - Added non_blocking_read      - Takes control of the update rate from ur interface by immediately returning from the read method
   - Added keep_alive_count field - Configures the amount of allowed reading timeouts on the robot side
-  Additionally it adds the ${prefix} argument for the gpios and the force torque sensor in the ur.ros2_control.xacro file
+  Additionally it adds the ${tf_prefix} argument for the gpios and the force torque sensor in the ur.ros2_control.xacro file
   Co-authored-by: Lennart Nachtigall <firesurfer@firesurfer.de>
 * Set the default tool voltage in the description to 0 (`#41 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/issues/41>`_)
   I am not sure whether this will actually affect something, as I don't think
@@ -213,7 +213,7 @@ Changelog for package ur_description
 * fixed name of ur5 transmissions
 * patched gazebo.urdf.xacro to be compatible with gazebo 1.5
 * fixed copy&paste error (?)
-* prefix versions of gazebo and transmission macros
+* tf_prefix versions of gazebo and transmission macros
 * Added joint limited urdf and associated moveit package.  The joint limited package is friendlier to the default KLD IK solution
 * Added ur5 moveit library.  The Kinematics used by the ur5 move it library is unreliable and should be replaced with the ur_kinematics
 * Updated urdf files use collision/visual models.

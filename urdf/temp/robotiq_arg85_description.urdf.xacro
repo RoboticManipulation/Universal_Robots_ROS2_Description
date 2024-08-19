@@ -3,16 +3,16 @@
   <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.transmission.xacro" />
 	<xacro:property name="pi" value="3.14159"/>
   
-  <xacro:macro name="robotiq_85_gripper" params="prefix parent *origin">
+  <xacro:macro name="robotiq_85_gripper" params="tf_prefix parent *origin">
   
-  <joint name="${prefix}robotiq_85_base_joint" type="fixed">
+  <joint name="${tf_prefix}robotiq_85_base_joint" type="fixed">
     <parent link="${parent}"/>
-    <child link="${prefix}robotiq_85_base_link"/>
+    <child link="${tf_prefix}robotiq_85_base_link"/>
     <xacro:insert_block name="origin"/>
   </joint>
   
   <link
-    name="${prefix}robotiq_85_base_link">
+    name="${tf_prefix}robotiq_85_base_link">
     <inertial>
       <origin
         xyz="0.00021987 -2.3546E-10 0.030163"
@@ -53,15 +53,15 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_left_knuckle_joint"
+    name="${tf_prefix}robotiq_85_left_knuckle_joint"
     type="fixed">
     <origin
       xyz="0.0306011444260539 0 0.0627920162695395"
       rpy="0 0 0" />
     <parent
-      link="${prefix}robotiq_85_base_link" />
+      link="${tf_prefix}robotiq_85_base_link" />
     <child
-      link="${prefix}robotiq_85_left_knuckle_link" />
+      link="${tf_prefix}robotiq_85_left_knuckle_link" />
     <axis
       xyz="0 -1 0" />
     <limit
@@ -72,7 +72,7 @@
   </joint>
   
   <link
-    name="${prefix}robotiq_85_left_knuckle_link">
+    name="${tf_prefix}robotiq_85_left_knuckle_link">
     <inertial>
       <origin
         xyz="0.0178331863169983 3.68915177224286E-11 0.0021442477325704"
@@ -113,15 +113,15 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_left_finger_joint"
+    name="${tf_prefix}robotiq_85_left_finger_joint"
     type="fixed">
     <origin
       xyz="0.0316910442266543 0 -0.00193396375724605"
       rpy="0 0 0" />
     <parent
-      link="${prefix}robotiq_85_left_knuckle_link" />
+      link="${tf_prefix}robotiq_85_left_knuckle_link" />
     <child
-      link="${prefix}robotiq_85_left_finger_link" />
+      link="${tf_prefix}robotiq_85_left_finger_link" />
     <axis
       xyz="0 -1 0" />
     <limit
@@ -136,7 +136,7 @@
   </joint>
 
   <link
-    name="${prefix}robotiq_85_left_finger_link">
+    name="${tf_prefix}robotiq_85_left_finger_link">
     <inertial>
       <origin
         xyz="0.00131451599174296 2.88942057994543E-15 0.0215404163180413"
@@ -177,15 +177,15 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_left_inner_knuckle_joint"
+    name="${tf_prefix}robotiq_85_left_inner_knuckle_joint"
     type="fixed">
     <origin
       xyz="0.0127000000001501 0 0.0693074999999639"
       rpy="0 0 0" />
     <parent
-      link="${prefix}robotiq_85_base_link" />
+      link="${tf_prefix}robotiq_85_base_link" />
     <child
-      link="${prefix}robotiq_85_left_inner_knuckle_link" />
+      link="${tf_prefix}robotiq_85_left_inner_knuckle_link" />
     <axis
       xyz="0 -1 0" />
     <limit
@@ -200,7 +200,7 @@
   </joint>
 
   <link
-    name="${prefix}robotiq_85_left_inner_knuckle_link">
+    name="${tf_prefix}robotiq_85_left_inner_knuckle_link">
     <inertial>
       <origin
         xyz="0.017097546626628 -3.93808524389535E-10 0.0224918438201868"
@@ -241,15 +241,15 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_left_finger_tip_joint"
+    name="${tf_prefix}robotiq_85_left_finger_tip_joint"
     type="fixed">
     <origin
       xyz="0.034585310861294 0 0.0454970193817975"
       rpy="0 0 0" />
     <parent
-      link="${prefix}robotiq_85_left_inner_knuckle_link" />
+      link="${tf_prefix}robotiq_85_left_inner_knuckle_link" />
     <child
-      link="${prefix}robotiq_85_left_finger_tip_link" />
+      link="${tf_prefix}robotiq_85_left_finger_tip_link" />
     <axis
       xyz="0 -1 0" />
     <limit
@@ -264,7 +264,7 @@
   </joint>
   
   <link
-    name="${prefix}robotiq_85_left_finger_tip_link">
+    name="${tf_prefix}robotiq_85_left_finger_tip_link">
     <inertial>
       <origin
         xyz="0.0060275613594574 -6.29183141465421E-15 0.00669925693133241"
@@ -305,15 +305,15 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_right_knuckle_joint"
+    name="${tf_prefix}robotiq_85_right_knuckle_joint"
     type="fixed">
     <origin
       xyz="-0.0126999999998499 0 0.0693075000000361"
       rpy="0 0 3.14159265358979" />
     <parent
-      link="${prefix}robotiq_85_base_link" />
+      link="${tf_prefix}robotiq_85_base_link" />
     <child
-      link="${prefix}robotiq_85_right_knuckle_link" />
+      link="${tf_prefix}robotiq_85_right_knuckle_link" />
     <axis
       xyz="0 1 0" />
     <limit
@@ -328,7 +328,7 @@
   </joint>
 
   <link
-    name="${prefix}robotiq_85_right_knuckle_link">
+    name="${tf_prefix}robotiq_85_right_knuckle_link">
     <inertial>
       <origin
         xyz="0.0168606186773776 3.93808471820465E-10 0.0226699950793434"
@@ -368,15 +368,15 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_right_finger_joint"
+    name="${tf_prefix}robotiq_85_right_finger_joint"
     type="fixed">
     <origin
       xyz="0.0341060475457406 0 0.0458573878541688"
       rpy="0 0 0" />
     <parent
-      link="${prefix}robotiq_85_right_knuckle_link" />
+      link="${tf_prefix}robotiq_85_right_knuckle_link" />
     <child
-      link="${prefix}robotiq_85_right_finger_link" />
+      link="${tf_prefix}robotiq_85_right_finger_link" />
     <axis
       xyz="0 1 0" />
     <limit
@@ -391,7 +391,7 @@
   </joint>
   
   <link
-    name="${prefix}robotiq_85_right_finger_link">
+    name="${tf_prefix}robotiq_85_right_finger_link">
     <inertial>
       <origin
         xyz="0.00602756228812038 -6.47284509480176E-15 0.00669925609578108"
@@ -432,15 +432,15 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_right_inner_knuckle_link_joint"
+    name="${tf_prefix}robotiq_85_right_inner_knuckle_link_joint"
     type="fixed">
     <origin
       xyz="-0.0306011444258893 0 0.0627920162695395"
       rpy="0 0 3.14159265358979" />
     <parent
-      link="${prefix}robotiq_85_base_link" />
+      link="${tf_prefix}robotiq_85_base_link" />
     <child
-      link="${prefix}robotiq_85_right_inner_knuckle_link" />
+      link="${tf_prefix}robotiq_85_right_inner_knuckle_link" />
     <axis
       xyz="0 1 0" />
     <limit
@@ -455,7 +455,7 @@
   </joint>
   
   <link
-    name="${prefix}robotiq_85_right_inner_knuckle_link">
+    name="${tf_prefix}robotiq_85_right_inner_knuckle_link">
     <inertial>
       <origin
         xyz="0.0178097074051638 3.60493211424024E-11 0.00233123458346721"
@@ -496,21 +496,21 @@
   </link>
   
   <joint
-    name="${prefix}robotiq_85_right_finger_tip_joint"
+    name="${tf_prefix}robotiq_85_right_finger_tip_joint"
     type="fixed">
     <origin
       xyz="0.0317095909367246 0 -0.0016013564954687"
       rpy="0 0 0" />
     <parent
-      link="${prefix}robotiq_85_right_inner_knuckle_link" />
+      link="${tf_prefix}robotiq_85_right_inner_knuckle_link" />
     <child
-      link="${prefix}robotiq_85_right_finger_tip_link" />
+      link="${tf_prefix}robotiq_85_right_finger_tip_link" />
     <axis
       xyz="0 1 0" />
   </joint>
 
   <link
-    name="${prefix}robotiq_85_right_finger_tip_link">
+    name="${tf_prefix}robotiq_85_right_finger_tip_link">
     <inertial>
       <origin
         xyz="0.00108844269639009 -2.611488350845E-15 0.0215530225245502"

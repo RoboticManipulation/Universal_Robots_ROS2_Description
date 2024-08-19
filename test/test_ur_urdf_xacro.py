@@ -45,7 +45,7 @@ def test_ur_urdf_xacro():
     # General Arguments
     description_package = "ur_description"
     description_file = "ur.urdf.xacro"
-    prefix = '""'
+    tf_prefix = '""'
 
     joint_limit_params = os.path.join(
         get_package_share_directory(description_package), "config", ur_type, "joint_limits.yaml"
@@ -87,7 +87,7 @@ def test_ur_urdf_xacro():
         f" safety_pos_margin:={safety_pos_margin}"
         f" safety_k_position:={safety_k_position}"
         f" name:={ur_type}"
-        f" prefix:={prefix}"
+        f" tf_prefix:={tf_prefix}"
         f" > {tmp_urdf_output_file}"
     )
     check_urdf_command = f"{shutil.which('check_urdf')} {tmp_urdf_output_file}"

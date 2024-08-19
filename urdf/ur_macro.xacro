@@ -144,7 +144,7 @@
     </xacro:if>
 
     <!-- Add URDF transmission elements (for ros_control) -->
-    <!--<xacro:ur_arm_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" />-->
+    <!--<xacro:ur_arm_transmission tf_prefix="${tf_prefix}" hw_interface="${transmission_hw_interface}" />-->
     <!-- Placeholder for ros2_control transmission which don't yet exist -->
 
     <!-- links -  main serial chain -->
@@ -401,14 +401,14 @@
     </joint>
 
     <!-- Virtual Grasp Point Link -->
-    <link name="${prefix}gripper_grasp_point">
+    <link name="${tf_prefix}gripper_grasp_point">
     </link>
 
     <!-- Virtual Grasp Point Fixed Joint -->
   
-    <joint name="${prefix}gripper_grasp_point_joint" type="fixed">
+    <joint name="${tf_prefix}gripper_grasp_point_joint" type="fixed">
       <parent link="tool0"/>
-      <child link="${prefix}gripper_grasp_point"/>
+      <child link="${tf_prefix}gripper_grasp_point"/>
       <!-- Center between finger tips -->
       <!-- Matching the table origin -->
       <!--<origin rpy="1.570796325 0 -1.570796325" xyz="${0.213-0.024/2} 0 0"/>-->

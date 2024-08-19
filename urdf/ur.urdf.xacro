@@ -17,6 +17,7 @@
 
    <!-- parameters -->
    <xacro:arg name="tf_prefix" default="" />
+   
    <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml"/>
    <xacro:arg name="kinematics_params" default="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml"/>
    <xacro:arg name="physical_params" default="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml"/>
@@ -81,7 +82,7 @@
 
    <!-- table -->
    <xacro:table_attach
-     prefix="$(arg prefix)"
+     tf_prefix="$(arg tf_prefix)"
      name="table"
      parent="world"
      sim_gazebo="$(arg sim_gazebo)"
@@ -94,7 +95,7 @@
 
    <!-- ringlight -->
    <xacro:ringlight_attach
-     prefix="$(arg prefix)"
+     tf_prefix="$(arg tf_prefix)"
      name="ringlight"
      parent="world"
      sim_gazebo="$(arg sim_gazebo)"
@@ -107,7 +108,7 @@
 
    <!-- beam -->
    <xacro:beam_attach
-     prefix="$(arg prefix)"
+     tf_prefix="$(arg tf_prefix)"
      name="beam"
      parent="world"
      sim_gazebo="$(arg sim_gazebo)"
@@ -121,7 +122,7 @@
 
     <!-- wall -->
    <xacro:wall_attach
-     prefix="$(arg prefix)"
+     tf_prefix="$(arg tf_prefix)"
      name="wall"
      parent="world"
      sim_gazebo="$(arg sim_gazebo)"
@@ -135,7 +136,7 @@
    <!-- gripper -->
    <xacro:if value="$(arg use_gripper)">
    <xacro:robotiq_gripper
-     prefix="$(arg prefix)"
+     tf_prefix="$(arg tf_prefix)"
      parent="tool0"
      >
      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
@@ -177,10 +178,11 @@
      reverse_ip="$(arg reverse_ip)"
      script_command_port="$(arg script_command_port)"
      use_gripper="$(arg use_gripper)"
-     reverse_port="$(arg reverse_port)"
-     script_sender_port="$(arg script_sender_port)"
-     trajectory_port="$(arg trajectory_port)"
+     
      >
+     <!-- reverse_port="$(arg reverse_port)"
+     script_sender_port="$(arg script_sender_port)"
+     trajectory_port="$(arg trajectory_port)" -->
      <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
    </xacro:ur_robot>
 

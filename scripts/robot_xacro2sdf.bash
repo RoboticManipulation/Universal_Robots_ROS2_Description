@@ -21,7 +21,7 @@ XACRO_ARGS=(
     script_filename:=ros_control.urscript
     input_recipe_filename:=rtde_input_recipe.txt
     output_recipe_filename:=rtde_output_recipe.txt
-    prefix:=""
+    tf_prefix:=""
     sim_ignition:=true
     simulation_controllers:=/home/bk/ros2/object_placement/object_placement_ws/src/ur_2f_85_moveit2/ur_2f_85_moveit2_config/config/ur_controllers.yaml
 )

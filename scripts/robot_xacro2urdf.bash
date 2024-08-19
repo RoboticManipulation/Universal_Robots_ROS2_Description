@@ -20,7 +20,7 @@ XACRO_ARGS=(
     script_filename:=ros_control.urscript
     input_recipe_filename:=rtde_input_recipe.txt
     output_recipe_filename:=rtde_output_recipe.txt
-    prefix:=""
+    tf_prefix:=""
     sim_ignition:=false
     simulation_controllers:=/home/bk/ros2/object_placement/ur_driver_ws/src/Universal_Robots_ROS2_Driver/ur_bringup/config/ur_controllers.yaml
 )
