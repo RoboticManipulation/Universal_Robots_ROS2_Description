@@ -404,6 +404,10 @@
     <link name="${tf_prefix}gripper_grasp_point">
     </link>
 
+    <!-- Virtual Custom Gripper Grasp Point Link -->
+    <link name="${tf_prefix}custom_gripper_grasp_point">
+    </link>
+
     <!-- Virtual Grasp Point Fixed Joint -->
   
     <joint name="${tf_prefix}gripper_grasp_point_joint" type="fixed">
@@ -417,6 +421,13 @@
       <!--z offset closed Robotiq gripper from base to fingertip 162.8mm + force torque sensor 35mm-->
       <origin rpy="0 0 0" xyz="0 0 0.1628"/>
       <!--<limit effort="0" lower="0" upper="0" velocity="0"/>-->
+    </joint>
+
+      
+    <joint name="${tf_prefix}custom_gripper_grasp_point_joint" type="fixed">
+      <parent link="tool0"/>
+      <child link="${tf_prefix}custom_gripper_grasp_point"/>
+      <origin rpy="0 0 0" xyz="0 0 0.150"/>
     </joint>
 
   </xacro:macro>

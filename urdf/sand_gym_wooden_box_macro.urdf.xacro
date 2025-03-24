@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="wooden_box">
+    <xacro:macro name="wooden_box" params="parent *origin tf_prefix">
+        <link name="${tf_prefix}wooden_box_base_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <!-- Using STL for visual instead of DAE (Looks better :) ) -->
+                    <mesh filename="package://ur_description/meshes/collision/wooden_box.stl" scale="0.01 0.01 0.01"/>
+                </geometry>
+                <material name="gripper_material">
+                    <color rgba="0.7 0.7 0.7 1.0"/>
+                </material>
+            </visual>
+            
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://ur_description/meshes/collision/wooden_box.stl" scale="0.01 0.01 0.01"/>
+                </geometry>
+            </collision>
+            
+            <inertial>
+                <mass value="0.2"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+
+        <!-- Join the gripper to the parent link  -->
+        <joint name="${tf_prefix}wooden_box_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${tf_prefix}wooden_box_base_link"/>
+            <xacro:insert_block name="origin"/>
+        </joint>
+    </xacro:macro>
+</robot>
