@@ -185,7 +185,7 @@
         tf_prefix="$(arg tf_prefix)"
         parent="world"
       >
-        <origin xyz="0.0 0.9 0.0475" rpy="0 0 0"/>
+        <origin xyz="0.0 0.55 0.0475" rpy="0 0 1.57"/>
     </xacro:wooden_box>
 
 </xacro:if>
