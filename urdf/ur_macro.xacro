@@ -427,7 +427,7 @@
     <joint name="${tf_prefix}custom_gripper_grasp_point_joint" type="fixed">
       <parent link="tool0"/>
       <child link="${tf_prefix}custom_gripper_grasp_point"/>
-      <origin rpy="0 0 0" xyz="0 0 0.150"/>
+      <origin rpy="0 0 -0.785413110" xyz="0 0 0.150"/>
     </joint>
 
   </xacro:macro>
