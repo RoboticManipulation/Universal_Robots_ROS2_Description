@@ -408,6 +408,10 @@
     <link name="${tf_prefix}custom_gripper_grasp_point">
     </link>
 
+    <!-- Virtual ECPMI Gripper Grasp Point Link -->
+    <link name="${tf_prefix}ecpmi_gripper_grasp_point">
+    </link>
+
     <!-- Virtual Grasp Point Fixed Joint -->
   
     <joint name="${tf_prefix}gripper_grasp_point_joint" type="fixed">
@@ -429,6 +433,21 @@
       <child link="${tf_prefix}custom_gripper_grasp_point"/>
       <origin rpy="0 0 -0.785413110" xyz="0 0 0.150"/>
     </joint>
+
+    <joint name="${tf_prefix}ecpmi_gripper_grasp_point_joint" type="fixed">
+      <parent link="tool0"/>
+      <child link="${tf_prefix}ecpmi_gripper_grasp_point"/>
+      <!-- ECPMI suction gripper grasp point at tip -->
+      <origin rpy="0 0 0" xyz="0 0 0.107"/>
+    </joint>
+
+    <!-- Joint connecting wrist_3_link to camera mount -->
+    <!-- <joint name="${tf_prefix}ur3e_inhand_camera_mount_joint" type="fixed">
+      <parent link="${tf_prefix}wrist_3_link"/>
+      <child link="${tf_prefix}ur3e_inhand_camera_mount"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint> -->
+
 
   </xacro:macro>
 </robot>
