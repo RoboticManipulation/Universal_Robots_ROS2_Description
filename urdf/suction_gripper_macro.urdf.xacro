@@ -35,15 +35,15 @@
         </joint>
 
         <!-- Mount reference frame positioned -31.5mm in x relative to parent -->
-        <link name="${tf_prefix}mount_reference">
-            <!-- Empty link for reference frame only -->
+        <!-- <link name="${tf_prefix}mount_reference">
+            
         </link>
 
         <joint name="${tf_prefix}mount_reference_joint" type="fixed">
             <parent link="${parent}"/>
             <child link="${tf_prefix}mount_reference"/>
             <origin xyz="-0.0315 0 0.007" rpy="0 0 0"/>
-        </joint>
+        </joint> -->
 
         <!-- Gripper tip link at the center bottom of the gripper -->
         <link name="${tf_prefix}ecpmi_gripper_tip">

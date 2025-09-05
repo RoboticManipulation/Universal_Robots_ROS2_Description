@@ -30,6 +30,24 @@
             </inertial>
         </link>
 
+        <!-- Mount reference frame positioned -31.5mm in x relative to parent -->
+        <link name="${tf_prefix}mount_reference">
+            
+        </link>
+
+        <!-- Original -->
+        <!-- <origin xyz="-0.0315 0 0.007" rpy="0 0 0"/> -->
+
+        <!-- <origin xyz="-0.03305 0 0.007 " rpy="0 0 0"/> -->
+
+
+        <joint name="${tf_prefix}mount_reference_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${tf_prefix}mount_reference"/>
+             <origin xyz="-0.03305 0 0.007 " rpy="0 0 0"/>
+        </joint>
+
+
         <!-- Join the camera mount to the parent link (tool0) -->
         <joint name="${tf_prefix}ur3e_inhand_camera_mount_joint" type="fixed">
             <parent link="${parent}"/>
@@ -41,7 +59,6 @@
         <link name="${tf_prefix}camera_mount_reference">
             
         </link>
-       <!-- <origin xyz="0.128610 -0.000620291 0.025456" rpy="0.261826 0.000000 -1.570917"/> -->
         <joint name="${tf_prefix}camera_mount_reference_joint" type="fixed">
             <parent link="${tf_prefix}mount_reference"/>
             <child link="${tf_prefix}camera_mount_reference"/>
