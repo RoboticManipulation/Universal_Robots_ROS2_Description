@@ -14,13 +14,14 @@
    <xacro:include filename="$(find ur_description)/urdf/suction_gripper_macro.urdf.xacro"/>
    <xacro:include filename="$(find ur_description)/urdf/ur3e_inhand_camera_mount_macro.urdf.xacro"/>
     <xacro:include filename="$(find ur_description)/urdf/sand_gym_wooden_box_macro.urdf.xacro"/>
+    <xacro:include filename="$(find ur_description)/urdf/ur_llm_wooden_box_macro.urdf.xacro"/>
 
    <!-- possible 'ur_type' values: ur3, ur3e, ur5, ur5e, ur10, ur10e, ur16e, ur20, ur30 -->
    <!-- the default value should raise an error in case this was called without defining the type -->
    <xacro:arg name="ur_type" default="ur5x"/>
 
 
-   <xacro:arg name="is_ur3e_setup" default="false"/>
+   <xacro:arg name="is_ur3e_setup" default="true"/>
    <xacro:arg name="is_ur5_setup" default="false"/>
    <xacro:arg name="is_ur5e_setup" default="false"/>
 
@@ -75,6 +76,7 @@
    <!-- Table parameters -->
    <xacro:arg name="physical_params_ur5_table" default="$(find ur_description)/config/table/physical_parameters_ur5_table.yaml"/>
    <xacro:arg name="physical_params_ur5e_table" default="$(find ur_description)/config/table/physical_parameters_ur5e_table.yaml"/>
+   <xacro:arg name="physical_params_ur3e_table" default="$(find ur_description)/config/table/physical_parameters_ur3e_table.yaml"/>
    <xacro:arg name="ring_beam_height" default="1.0"/>
 
      <!-- Simulation parameters -->
@@ -197,7 +199,47 @@
 
 </xacro:if>
 
+<xacro:if value="${is_ur3e_setup}">
+    
+      <!-- Load configuration data from the provided .yaml files -->
+    <xacro:read_table_data
+      physical_parameters_table_file="$(arg physical_params_ur3e_table)"
+    />
 
+    <!-- table -->
+    <xacro:table_attach
+      tf_prefix="$(arg tf_prefix)"
+      name="table"
+      parent="world"
+      sim_gazebo="$(arg sim_gazebo)"
+      sim_ignition="$(arg sim_ignition)"
+      gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
+      physical_parameters_table_file="$(arg physical_params_ur5e_table)"
+      >
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:table_attach>
+
+    <!-- wall -->
+    <xacro:wall_attach
+      tf_prefix="$(arg tf_prefix)"
+      name="wall"
+      parent="world"
+      sim_gazebo="$(arg sim_gazebo)"
+      sim_ignition="$(arg sim_ignition)"
+      gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
+      physical_parameters_table_file="$(arg physical_params_ur3e_table)"
+      >
+      <origin xyz="0.4 0.0 0.35" rpy="0 1.57 0"/>
+    </xacro:wall_attach>
+
+    <xacro:ur_llm_wooden_box
+        tf_prefix="$(arg tf_prefix)"
+        parent="world"
+      >
+        <origin xyz="-0.28 0.21 0.08" rpy="0 0 0"/>
+    </xacro:ur_llm_wooden_box>
+   
+  </xacro:if>
 
   <!-- robotiq gripper -->
   <xacro:if value="$(arg use_gripper)">
@@ -222,6 +264,8 @@
       </xacro:custom_gripper>
     </xacro:unless>
   </xacro:if>
+
+ 
 
 
   <!-- suction gripper -->
