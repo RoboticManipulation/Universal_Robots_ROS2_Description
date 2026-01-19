@@ -60,7 +60,7 @@
    <xacro:arg name="tool_tcp_port" default="54321" />
 
    <!-- Flag to use the Gripper or just the UR5  -->
-   <xacro:arg name="use_gripper" default="false" />
+   <xacro:arg name="use_gripper" default="true" />
 
    <!-- Flag to choose between custom gripper and robotiq gripper -->
    <xacro:arg name="use_custom_gripper" default="false" />
@@ -97,70 +97,6 @@
   -->
 
 
-
-<xacro:if value="${is_ur5_setup}">
-  
-    <!-- Load configuration data from the provided .yaml files -->
-  <xacro:read_table_data
-    physical_parameters_table_file="$(arg physical_params_ur5_table)"
-  />
-
-
-   <!-- table -->
-   <xacro:table_attach
-     tf_prefix="$(arg tf_prefix)"
-     name="table"
-     parent="world"
-     sim_gazebo="$(arg sim_gazebo)"
-     sim_ignition="$(arg sim_ignition)"
-     gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
-     physical_parameters_table_file="$(arg physical_params_ur5_table)"
-     >
-     <origin xyz="-0.232 0.415 0" rpy="0 0 0"/>
-   </xacro:table_attach>
-
-    <!-- ringlight -->
-    <xacro:ringlight_attach
-      tf_prefix="$(arg tf_prefix)"
-      name="ringlight"
-      parent="world"
-      sim_gazebo="$(arg sim_gazebo)"
-      sim_ignition="$(arg sim_ignition)"
-      gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
-      physical_parameters_table_file="$(arg physical_params_ur5_table)"
-      >
-      <origin xyz="-0.232 0.415 $(arg ring_beam_height)" rpy="0 0 0"/>
-    </xacro:ringlight_attach>
-
-    <!-- beam -->
-    <xacro:beam_attach
-      tf_prefix="$(arg tf_prefix)"
-      name="beam"
-      parent="world"
-      sim_gazebo="$(arg sim_gazebo)"
-      sim_ignition="$(arg sim_ignition)"
-      gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
-      physical_parameters_table_file="$(arg physical_params_ur5_table)"
-      
-      >
-      <origin xyz="-0.518 0.415 $(arg ring_beam_height)" rpy="0 0 0"/>
-    </xacro:beam_attach>
-
-      <!-- wall -->
-    <xacro:wall_attach
-      tf_prefix="$(arg tf_prefix)"
-      name="wall"
-      parent="world"
-      sim_gazebo="$(arg sim_gazebo)"
-      sim_ignition="$(arg sim_ignition)"
-      gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
-      physical_parameters_table_file="$(arg physical_params_ur5_table)"
-      >
-      <origin xyz="-0.618 0.0 0.35" rpy="0 1.57 0"/>
-    </xacro:wall_attach>
-  </xacro:if>
-
-
 <xacro:if value="${is_ur5e_setup}">
   
     <!-- Load configuration data from the provided .yaml files -->
@@ -178,15 +114,8 @@
      gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint_arg)"
      physical_parameters_table_file="$(arg physical_params_ur5e_table)"
      >
-     <origin xyz="0 0.2 0" rpy="0 0 0"/>
+     <origin xyz="0 0.2 0.72" rpy="0 0 0"/>
    </xacro:table_attach>
-
-   <xacro:wooden_box
-        tf_prefix="$(arg tf_prefix)"
-        parent="world"
-      >
-        <origin xyz="0.0 0.55 0.0475" rpy="0 0 1.57"/>
-    </xacro:wooden_box>
 
 </xacro:if>
 
@@ -205,7 +134,7 @@
   </xacro:if>
 
   <!-- custom gripper (sand_gym) -->
-  <xacro:if value="$(arg use_custom_gripper)">
+  <!-- <xacro:if value="$(arg use_custom_gripper)">
     <xacro:unless value="$(arg use_gripper)">
       <xacro:custom_gripper
         tf_prefix="$(arg tf_prefix)"
@@ -214,7 +143,7 @@
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
       </xacro:custom_gripper>
     </xacro:unless>
-  </xacro:if>
+  </xacro:if> -->
 
    <!-- arm -->
    <xacro:ur_robot
@@ -256,7 +185,7 @@
      <!-- reverse_port="$(arg reverse_port)"
      script_sender_port="$(arg script_sender_port)"
      trajectory_port="$(arg trajectory_port)" -->
-     <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
+     <origin xyz="0 0 0.72" rpy="0 0 1.570796327" />          <!-- position robot in the world -->
    </xacro:ur_robot>
 
    <xacro:if value="$(arg sim_gazebo)">
