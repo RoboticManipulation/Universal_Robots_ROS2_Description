@@ -185,7 +185,7 @@
      <!-- reverse_port="$(arg reverse_port)"
      script_sender_port="$(arg script_sender_port)"
      trajectory_port="$(arg trajectory_port)" -->
-     <origin xyz="0 0 0.72" rpy="0 0 1.570796327" />          <!-- position robot in the world -->
+     <origin xyz="0 0 0" rpy="0 0 0" />          <!-- world coincides with the robot base -->
    </xacro:ur_robot>
 
    <xacro:if value="$(arg sim_gazebo)">

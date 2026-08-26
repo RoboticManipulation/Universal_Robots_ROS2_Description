@@ -9,7 +9,7 @@
         <!-- ros2 control instance -->
         <xacro:robotiq_gripper_ros2_control
           name="robotiq_gripper_control"
-          com_port="/dev/ttyUSB0"/>
+          com_port="/tmp/ttyUR"/>
     
 
 
